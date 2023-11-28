@@ -1,7 +1,19 @@
+using CottonMouth.Repositories;
+using CottonMouth.Repositories.Implementations;
+using CottonMouth.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),  b => b.MigrationsAssembly("CottonMouth.UI")));
+
+builder.Services.AddScoped<ICountryRepo, CountryRepo>();
+builder.Services.AddScoped<IStateRepo, StateRepo>();
+builder.Services.AddScoped<ICityRepo, CityRepo>();
 
 var app = builder.Build();
 

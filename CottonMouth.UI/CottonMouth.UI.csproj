@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CottonMouth.Entities\CottonMouth.Entities.csproj" />
     <ProjectReference Include="..\CottonMouth.Repositories\CottonMouth.Repositories.csproj" />
   </ItemGroup>
 

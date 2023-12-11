@@ -4,21 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcertBooking.Entities
+namespace ConcertBooking.WebHost.ViewModels
 {
-    public class Concert
+    public class EditConcertViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string? Description { get; set; }
-        public string? ImageUrl { get; set; }
+        public string Description { get; set; }
+        public IFormFile ChooseImage { get; set; }
+        public string ImageUrl { get; set; }
         public DateTime DateTime { get; set; }
-
         public int VenueId { get; set; }
-        public Venue Venue { get; set; }
-
         public int ArtistId { get; set; }
-        public Artist Artist { get; set; }
-
     }
 }

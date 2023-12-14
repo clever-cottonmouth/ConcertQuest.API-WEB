@@ -8,22 +8,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
+                
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        Home
-                        <span class="visually-hidden">(current)</span>
-                    </a>
+                    <a class="nav-link" asp-controller="Concerts" asp-action="Index">CONCERT</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Concerts" asp-action="Index">Concert</a>
+                    <a class="nav-link" asp-controller="venues" asp-action="index">VENUE</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="venues" asp-action="index">Venue</a>
+                    <a class="nav-link" asp-controller="artists" asp-action="index">ARTIST</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="artists" asp-action="index">Artist</a>
-                </li>
-                <li class="nav-item dropdown">
+               @*  <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" asp-controller="Concerts" asp-action="Index">Concerts</a>
@@ -32,7 +27,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Separated link</a>
                     </div>
-                </li>
+                </li> *@
             </ul>
             <form class="d-flex">
                 <input class="form-control me-sm-2" type="search" placeholder="Search">

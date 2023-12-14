@@ -15,4 +15,4 @@ The Concert Booking System is an ASP.NET MVC-based application designed to strea
 1. Clone the repository:
 
    ```bash
-   git clone [https://github.com/yourusername/concert-booking.git](https://github.com/mirajhad/Concert-Booking-System)https://github.com/mirajhad/Concert-Booking-System
+   git clone https://github.com/yourusername/concert-booking.git

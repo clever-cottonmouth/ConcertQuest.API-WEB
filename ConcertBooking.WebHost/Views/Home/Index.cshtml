@@ -1,8 +1,23 @@
-﻿@{
+﻿@model List<HomeConcertViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row mt-2">
+    @foreach (var item in Model)
+    {
+        <div class="col-3 mb-2">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="@item.ConcertImage" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@item.ConcertName</h5>
+                    <h5 class="card-title">@item.ArtistName</h5>
+                    <p class="card-text">@item.Description</p>
+                    <a asp-action="Details" asp-route-id="@item.ConcertId" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+

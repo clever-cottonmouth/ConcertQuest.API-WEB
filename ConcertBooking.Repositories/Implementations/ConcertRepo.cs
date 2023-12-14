@@ -26,12 +26,12 @@ namespace ConcertBooking.Repositories.Implementations
 
         public async Task<IEnumerable<Concert>> GetAll()
         {
-            return await _context.Concerts.ToListAsync();
+            return await _context.Concerts.Include(x=> x.Artist).Include(y=>y.Venue).ToListAsync();
         }
 
         public async Task<Concert> GetById(int id)
         {
-           return await _context.Concerts.FirstOrDefaultAsync(x=>x.Id == id);
+           return await _context.Concerts.Include(x=>x.Artist).Include(y=>y.Venue).FirstOrDefaultAsync(x=>x.Id == id);
         }
 
         public async Task RemoveData(Concert concert)

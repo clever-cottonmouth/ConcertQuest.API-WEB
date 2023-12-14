@@ -19,4 +19,8 @@
     <ProjectReference Include="..\ConcertBooking.Repositories\ConcertBooking.Repositories.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

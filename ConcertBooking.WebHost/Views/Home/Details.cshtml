@@ -1,0 +1,33 @@
+﻿@model ConcertBooking.WebHost.ViewModels.HomePageViewModels.HomeConcertDetailsViewModel
+
+
+<div class="row m-3">
+
+    <div class="col-6">
+        <img src="@Model.ConcertImage" alt="Concert Image"  />
+    </div>
+    <div class="col-6">
+        <div>Concert Id: @Model.ConcertId</div>
+        <div>Concert Image: @Model.ConcertImage</div>
+        <div>Concert Description: @Model.Description</div>
+        <div>Venue Name: @Model.VenueName</div>
+        <div>Venue Address: @Model.VenueAddress</div>
+        <div>Venue Date & Time: @Model.ConcertDateTime.ToString("MM ddd yyyy hh:mm")</div>
+        <div class="mt-2"><img src="@Model.ArtistImage" class="rounded-circle img-fluid" style="height:150px;width:150px"></div>
+        <div>Artist Name: @Model.ArtistName</div>      
+        </div>
+        
+    
+</div>
+
+
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

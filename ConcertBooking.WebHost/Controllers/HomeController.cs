@@ -10,11 +10,13 @@ namespace ConcertBooking.WebHost.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConcertRepo _concertRepo;
+        private readonly ITicketRepo _ticketRepo;
 
-        public HomeController(ILogger<HomeController> logger, IConcertRepo concertRepo)
+        public HomeController(ILogger<HomeController> logger, IConcertRepo concertRepo, ITicketRepo ticketRepo)
         {
             _logger = logger;
             _concertRepo = concertRepo;
+            _ticketRepo = ticketRepo;
         }
 
         public async Task<IActionResult> Index()
@@ -54,6 +56,35 @@ namespace ConcertBooking.WebHost.Controllers
             return View(vm);
             
         }
+
+
+        public async Task<IActionResult> AvailabeTickets(int id)
+        {
+            var concert = await _concertRepo.GetById(id);
+            if(concert== null)
+            {
+                return NotFound();
+            }
+            var allSeats = Enumerable.Range(1, concert.Venue.SeatCapacity).ToList();
+            var bookedTickets = await _ticketRepo.GetBookedTickets(concert.Id);
+            var availableSeats = allSeats.Except(bookedTickets).ToList();
+
+            var viewModel = new AvailableTicketViewModel
+            {
+                ConcertId = concert.Id,
+                ConcertName = concert.Name,
+                AvailableSeats = availableSeats,
+            };
+
+            return View(viewModel);
+        }
+
+
+        public async Task<IActionResult> BookTickets(int ConcertId, List<int> selectedSeats)
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

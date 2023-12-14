@@ -1,0 +1,23 @@
+﻿@model AvailableTicketViewModel
+
+<div class="container mt-5">
+    <h2>@Model.ConcertName - Availabe Seats</h2>
+    <hr/>
+
+    <form asp-action="BookTickets" asp-controller="Home" method="post">
+        @foreach(var seat in Model.AvailableSeats)
+        {
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" name="selectedSeats" value="@seat" id="seat_@seat"/>
+                <label class="form-check-label" for="seat_@seat">
+                    Seat #@seat
+                </label>
+            </div>
+        }
+        <input type="hidden" asp-for="ConcertId"/>
+        <button  type="submit" class="btn btn-success mt-3">
+            Book Seleted Seats
+        </button>
+    </form>
+
+</div>

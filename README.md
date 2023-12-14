@@ -7,8 +7,8 @@ The Concert Booking System is an ASP.NET MVC-based application designed to strea
 ## Prerequisites
 
 - [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework)
-- [Visual Studio](https://visualstudio.microsoft.com/downloads/) or [Visual Studio Code](https://code.visualstudio.com/download)
-- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) or [SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads#) for database
+- [Visual Studio](https://visualstudio.microsoft.com/downloads/)
+- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
 ## Installation
 

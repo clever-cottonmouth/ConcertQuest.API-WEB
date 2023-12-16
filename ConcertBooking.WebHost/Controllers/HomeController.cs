@@ -1,8 +1,11 @@
-﻿using ConcertBooking.Repositories.Interfaces;
+﻿using ConcertBooking.Entities;
+using ConcertBooking.Repositories.Interfaces;
 using ConcertBooking.WebHost.Models;
 using ConcertBooking.WebHost.ViewModels.HomePageViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace ConcertBooking.WebHost.Controllers
 {
@@ -11,12 +14,14 @@ namespace ConcertBooking.WebHost.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IConcertRepo _concertRepo;
         private readonly ITicketRepo _ticketRepo;
+        private readonly IBookingRepo _bookingRepo;
 
-        public HomeController(ILogger<HomeController> logger, IConcertRepo concertRepo, ITicketRepo ticketRepo)
+        public HomeController(ILogger<HomeController> logger, IConcertRepo concertRepo, ITicketRepo ticketRepo, IBookingRepo bookingRepo)
         {
             _logger = logger;
             _concertRepo = concertRepo;
             _ticketRepo = ticketRepo;
+            _bookingRepo = bookingRepo;
         }
 
         public async Task<IActionResult> Index()
@@ -57,7 +62,7 @@ namespace ConcertBooking.WebHost.Controllers
             
         }
 
-
+        [Authorize]
         public async Task<IActionResult> AvailabeTickets(int id)
         {
             var concert = await _concertRepo.GetById(id);
@@ -79,10 +84,36 @@ namespace ConcertBooking.WebHost.Controllers
             return View(viewModel);
         }
 
-
+        [HttpPost]
         public async Task<IActionResult> BookTickets(int ConcertId, List<int> selectedSeats)
         {
-            return View();
+            if (selectedSeats == null || selectedSeats.Count==0)
+            {
+                ModelState.AddModelError("", "No Seats Selected");
+                return RedirectToAction("AvailableTickets", new { id = ConcertId });
+
+            }
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+
+            var newBooking = new Booking
+            {
+                ConcertId = ConcertId,
+                BookingDate = DateTime.Now,
+                UserId = userId,
+            };
+            
+            foreach( var  seatNumber in selectedSeats)
+            {
+                newBooking.Tickets.Add(new Ticket
+                {
+                    SeatNumber = seatNumber,
+                    IsBooked = true,
+                });
+            }
+            await _bookingRepo.AddBooking(newBooking);
+            return RedirectToAction("Index");  
         }
 
 

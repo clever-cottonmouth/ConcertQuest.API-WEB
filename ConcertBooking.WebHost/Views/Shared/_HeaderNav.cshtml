@@ -1,4 +1,5 @@
-﻿<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+﻿@using ConcertBooking.Infrastructure;
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" asp-action="Index" asp-controller="Home">
             <img class="w-25 h-25" src="~/css/concert.jpg" />
@@ -8,16 +9,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
-                
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Concerts" asp-action="Index">CONCERT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="venues" asp-action="index">VENUE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="artists" asp-action="index">ARTIST</a>
-                </li>
+                @if(User.IsInRole(GlobalConfiguration.Admin_Role)){
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Concerts" asp-action="Index">CONCERT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="venues" asp-action="index">VENUE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="artists" asp-action="index">ARTIST</a>
+                    </li>
+                }
+               
                @*  <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu">

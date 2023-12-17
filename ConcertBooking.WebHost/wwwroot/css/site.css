@@ -20,3 +20,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+@media print{
+    body *{
+        visibility:hidden
+    }
+    .print-section, .print-section *{
+        visibility:visible
+    }
+    .card-footer{
+        display:none
+    }
+    .print-section{
+        position:absolute;
+        left:0;
+        top:0;
+    }
+}

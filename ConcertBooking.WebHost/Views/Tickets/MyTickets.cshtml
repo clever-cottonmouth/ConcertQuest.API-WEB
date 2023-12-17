@@ -1,4 +1,49 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using ConcertBooking.WebHost.ViewModels.TicketsViewModels;
+@model IEnumerable<BookingViewModel>
+
+@if(Model==null)
+{
+    <div class="alert alert-warning">
+        You have no Tickets Booked
+    </div>
+}
+else
+{
+    foreach(var booking in Model)
+    {
+        <div class="card mb-4" id="booking-@booking.BookingId">
+            <div class="card-header">
+                Booking ID: @booking.BookingId - Date: @booking.BookingDate.ToString("dd/MM/yyyy")
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">Concert: @booking.ConcertName</h5>
+                <ul class="list-group">
+                    @foreach(var ticket in booking.Tickets)
+                    {
+                        <li class="list-group-item">
+                            Seat Number: @ticket.SeatNumber
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" onclick="printTicket('@booking.BookingId')">
+                    Print Ticket
+                </button>
+            </div>
+
+        </div>
+    }
+}
+
+@section scripts{
+    <script>
+        function printTicket(bookingId) { 
+            var element = document.getElementById('booking-' + bookingId);
+            element.classList.add('print-section');
+            window.print();
+            element.classList.remove('print-section');
+        }
+    </script>
+}

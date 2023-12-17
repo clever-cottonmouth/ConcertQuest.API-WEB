@@ -20,8 +20,8 @@
                         <a class="nav-link" asp-controller="artists" asp-action="index">ARTIST</a>
                     </li>
                 }
-               
-               @*  <li class="nav-item dropdown">
+
+                @*  <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" asp-controller="Concerts" asp-action="Index">Concerts</a>
@@ -31,6 +31,17 @@
                         <a class="dropdown-item" href="#">Separated link</a>
                     </div>
                 </li> *@
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Tickets" asp-action="MyTickets">
+                            Tickets
+                        </a>
+                    </li>
+                }
+
+
             </ul>
             <partial name="_LoginPartial"/>
            @*  <form class="d-flex">

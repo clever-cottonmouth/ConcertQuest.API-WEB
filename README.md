@@ -34,4 +34,4 @@ These technologies collectively contribute to the robustness, performance, and u
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/concert-booking.git
+   git clone https://github.com/mirajhad/Concert-Booking-System

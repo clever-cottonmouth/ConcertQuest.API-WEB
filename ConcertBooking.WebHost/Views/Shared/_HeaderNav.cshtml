@@ -11,13 +11,13 @@
             <ul class="navbar-nav me-auto">
                 @if(User.IsInRole(GlobalConfiguration.Admin_Role)){
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Concerts" asp-action="Index">CONCERT</a>
+                        <a class="nav-link text-light" asp-controller="Concerts" asp-action="Index">CONCERT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="venues" asp-action="index">VENUE</a>
+                        <a class="nav-link text-light" asp-controller="venues" asp-action="index">VENUE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="artists" asp-action="index">ARTIST</a>
+                        <a class="nav-link text-light" asp-controller="artists" asp-action="index">ARTIST</a>
                     </li>
                 }
 
@@ -35,8 +35,8 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Tickets" asp-action="MyTickets">
-                            Tickets
+                        <a class="nav-link text-light" asp-controller="Tickets" asp-action="MyTickets">
+                            TICKETS
                         </a>
                     </li>
                 }

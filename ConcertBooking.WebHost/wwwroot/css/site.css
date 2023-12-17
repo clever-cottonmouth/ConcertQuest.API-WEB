@@ -26,8 +26,9 @@ body {
     body *{
         visibility:hidden
     }
-    .print-section, .print-section *{
-        visibility:visible
+    .print-section, .print-section * {
+        visibility: visible;
+        color: black;    
     }
     .card-footer{
         display:none

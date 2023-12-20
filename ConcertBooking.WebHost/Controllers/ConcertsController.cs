@@ -24,10 +24,15 @@ namespace ConcertBooking.WebHost.Controllers
             _bookingRepo = bookingRepo;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageNumber=1, int pageSize=5)
         {
             var concerts = await _concertRepo.GetAll();
             var vm = new List<ConcertViewModel>();
+
+            int totalItems = 0;
+            totalItems = concerts.ToList().Count;
+            concerts = concerts.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+
             foreach (var concert in concerts)
             {
                 vm.Add(new ConcertViewModel
@@ -40,7 +45,19 @@ namespace ConcertBooking.WebHost.Controllers
 
                 });
             }
-            return View(vm);
+
+            var pvm = new PagedConcertViewModel
+            {
+                Concerts = vm,
+                PageInfo = new Utility.PageInfo
+                {
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    TotalItems = totalItems,
+                }
+            };
+
+            return View(pvm);
         }
 
         [HttpGet]

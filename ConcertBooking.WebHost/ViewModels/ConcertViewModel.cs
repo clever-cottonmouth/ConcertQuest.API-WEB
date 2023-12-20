@@ -1,4 +1,5 @@
 ﻿using ConcertBooking.Entities;
+using ConcertBooking.WebHost.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,12 @@ namespace ConcertBooking.WebHost.ViewModels
 
         public string ArtistName { get; set; }
       
+    }
+
+    public class PagedConcertViewModel
+    {
+        public List<ConcertViewModel> Concerts { get; set; }
+        public PageInfo PageInfo { get; set; }
+
     }
 }

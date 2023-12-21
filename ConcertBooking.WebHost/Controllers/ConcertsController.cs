@@ -24,7 +24,7 @@ namespace ConcertBooking.WebHost.Controllers
             _bookingRepo = bookingRepo;
         }
 
-        public async Task<IActionResult> Index(int pageNumber=1, int pageSize=5)
+        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 5)
         {
             var concerts = await _concertRepo.GetAll();
             var vm = new List<ConcertViewModel>();
@@ -82,7 +82,7 @@ namespace ConcertBooking.WebHost.Controllers
                 VenueId = vm.VenueId,
                 ArtistId = vm.ArtistId,
             };
-            if(vm.ImageUrl != null)
+            if (vm.ImageUrl != null)
             {
                 concert.ImageUrl = await _utilityRepo.SaveImage(containerName, vm.ImageUrl);
             }
@@ -125,7 +125,7 @@ namespace ConcertBooking.WebHost.Controllers
             concert.ArtistId = vm.ArtistId;
             concert.VenueId = vm.VenueId;
 
-            if(vm.ChooseImage != null)
+            if (vm.ChooseImage != null)
             {
                 concert.ImageUrl = await _utilityRepo.EditImage(containerName, vm.ChooseImage, concert.ImageUrl);
             }

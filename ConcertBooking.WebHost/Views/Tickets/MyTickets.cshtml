@@ -1,7 +1,7 @@
 ﻿@using ConcertBooking.WebHost.ViewModels.TicketsViewModels;
 @model IEnumerable<BookingViewModel>
 
-@if(Model==null)
+@if (Model == null)
 {
     <div class="alert alert-warning">
         You have no Tickets Booked
@@ -9,7 +9,7 @@
 }
 else
 {
-    foreach(var booking in Model)
+    foreach (var booking in Model)
     {
         <div class="card mb-4" id="booking-@booking.BookingId">
             <div class="card-header">
@@ -19,7 +19,7 @@ else
             <div class="card-body">
                 <h5 class="card-title">Concert: @booking.ConcertName</h5>
                 <ul class="list-group">
-                    @foreach(var ticket in booking.Tickets)
+                    @foreach (var ticket in booking.Tickets)
                     {
                         <li class="list-group-item">
                             Seat Number: @ticket.SeatNumber
@@ -39,7 +39,7 @@ else
 
 @section scripts{
     <script>
-        function printTicket(bookingId) { 
+        function printTicket(bookingId) {
             var element = document.getElementById('booking-' + bookingId);
             element.classList.add('print-section');
             window.print();

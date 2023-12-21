@@ -22,45 +22,46 @@
                 DateTime
             </th>
             <th>
-               VenueName
+                VenueName
             </th>
             <th>
-               ArtistName
+                ArtistName
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Concerts) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VenueName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtistName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+        @foreach (var item in Model.Concerts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtistName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
                     @Html.ActionLink("GetTickets", "GetTickets", new { id=item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
 @{
-    var previous = Model.PageInfo.HasPrevious ? "" : "disabled"; 
-    var next = Model.PageInfo.HasNext ? "" : "disabled"; 
+    var previous = Model.PageInfo.HasPrevious ? "" : "disabled";
+    var next = Model.PageInfo.HasNext ? "" : "disabled";
 }
 
 

@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control" >
+                <textarea asp-for="Description" class="form-control">
                     </textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
@@ -29,18 +29,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="VenueId" class="control-label"></label>
-                <select asp-for="VenueId" asp-items="@ViewBag.VenuesList" class="form-control" >
+                <select asp-for="VenueId" asp-items="@ViewBag.VenuesList" class="form-control">
                     <option selected disabled>Select Venue</option>
-                    </select>
+                </select>
                 <span asp-validation-for="VenueId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ArtistId" class="control-label"></label>
-                <select asp-for="ArtistId" asp-items="@ViewBag.artistList" class="form-control" >
+                <select asp-for="ArtistId" asp-items="@ViewBag.artistList" class="form-control">
                     <option selected disabled>
                         select Artist
                     </option>
-                    </select>
+                </select>
                 <span asp-validation-for="ArtistId" class="text-danger"></span>
             </div>
 
@@ -62,5 +62,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

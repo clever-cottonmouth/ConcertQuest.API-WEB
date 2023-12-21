@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ConcertBooking.Repositories.Implementations
 {
-    
+
     public class DbInitial : IDbInitial
     {
         private UserManager<ApplicationUser> _userManager;
@@ -25,7 +25,7 @@ namespace ConcertBooking.Repositories.Implementations
 
         public Task Seed()
         {
-            if (!_roleManager.RoleExistsAsync(GlobalConfiguration.Admin_Role).GetAwaiter().GetResult()) 
+            if (!_roleManager.RoleExistsAsync(GlobalConfiguration.Admin_Role).GetAwaiter().GetResult())
             {
                 _roleManager.CreateAsync(new IdentityRole(GlobalConfiguration.Admin_Role)).GetAwaiter().GetResult();
                 var user = new ApplicationUser
@@ -33,10 +33,10 @@ namespace ConcertBooking.Repositories.Implementations
                     Email = "admin@gmail.com",
                     UserName = "admin@gmail.com"
                 };
-                _userManager.CreateAsync(user,"Admin@12345")
+                _userManager.CreateAsync(user, "Admin@12345")
                     .GetAwaiter()
                     .GetResult();
-                _userManager.AddToRoleAsync(user, GlobalConfiguration.Admin_Role )
+                _userManager.AddToRoleAsync(user, GlobalConfiguration.Admin_Role)
                     .GetAwaiter()
                     .GetResult();
             }

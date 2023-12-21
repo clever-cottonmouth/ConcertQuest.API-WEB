@@ -26,7 +26,7 @@ namespace ConcertBooking.WebHost.Controllers
 
             var bookings = await _ticketRepo.GetBookings(userId);
             List<BookingViewModel> vm = new List<BookingViewModel>();
-            foreach(var booking in bookings)
+            foreach (var booking in bookings)
             {
                 vm.Add(
                     new BookingViewModel
@@ -38,7 +38,7 @@ namespace ConcertBooking.WebHost.Controllers
                         {
                             SeatNumber = ticketVM.SeatNumber,
                         }).ToList()
-                    }) ;
+                    });
             }
 
             return View(vm);

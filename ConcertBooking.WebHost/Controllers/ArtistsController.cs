@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ConcertBooking.WebHost.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class ArtistsController : Controller
     {
         private readonly IArtistRepo _artistRepo;
@@ -25,7 +25,7 @@ namespace ConcertBooking.WebHost.Controllers
 
             var artists = await _artistRepo.GetAll();
 
-            foreach(var artist in artists)
+            foreach (var artist in artists)
             {
                 vm.Add(new ArtistViewModel
                 {
@@ -52,7 +52,7 @@ namespace ConcertBooking.WebHost.Controllers
                 Name = vm.Name,
                 Bio = vm.Bio,
             };
-            if(vm.ImageUrl != null)
+            if (vm.ImageUrl != null)
             {
                 artist.ImageUrl = await _utilityRepo.SaveImage(containerName, vm.ImageUrl);
             }
@@ -80,8 +80,8 @@ namespace ConcertBooking.WebHost.Controllers
             var artist = await _artistRepo.GetById(vm.Id);
             artist.Name = vm.Name;
             artist.Bio = vm.Bio;
-            
-            if(vm.ChooseImage != null)
+
+            if (vm.ChooseImage != null)
             {
                 artist.ImageUrl = await _utilityRepo.EditImage(containerName, vm.ChooseImage, artist.ImageUrl);
             }

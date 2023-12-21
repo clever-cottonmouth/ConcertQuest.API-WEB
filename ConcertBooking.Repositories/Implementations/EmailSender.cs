@@ -11,7 +11,7 @@ namespace ConcertBooking.Repositories.Implementations
     {
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-           return Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }

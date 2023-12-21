@@ -9,7 +9,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
-                @if(User.IsInRole(GlobalConfiguration.Admin_Role)){
+                @if (User.IsInRole(GlobalConfiguration.Admin_Role))
+                {
                     <li class="nav-item">
                         <a class="nav-link text-light" asp-controller="Concerts" asp-action="Index">CONCERT</a>
                     </li>
@@ -22,14 +23,14 @@
                 }
 
                 @*  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" asp-controller="Concerts" asp-action="Index">Concerts</a>
-                        <a class="dropdown-item" asp-controller="venues" asp-action="index">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu">
+                <a class="dropdown-item" asp-controller="Concerts" asp-action="Index">Concerts</a>
+                <a class="dropdown-item" asp-controller="venues" asp-action="index">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+                </div>
                 </li> *@
 
                 @if (User.Identity.IsAuthenticated)
@@ -43,10 +44,10 @@
 
 
             </ul>
-            <partial name="_LoginPartial"/>
-           @*  <form class="d-flex">
-                <input class="form-control me-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            <partial name="_LoginPartial" />
+            @*  <form class="d-flex">
+            <input class="form-control me-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
             </form> *@
         </div>
     </div>

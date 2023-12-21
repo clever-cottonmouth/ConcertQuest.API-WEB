@@ -28,13 +28,13 @@ namespace ConcertBooking.WebHost.Controllers
         {
             DateTime today = DateTime.Today;
             var concerts = await _concertRepo.GetAll();
-            var vm = concerts.Where(x=>x.DateTime.Date>=today).Select(x => new HomeConcertViewModel
+            var vm = concerts.Where(x => x.DateTime.Date >= today).Select(x => new HomeConcertViewModel
             {
                 ConcertId = x.Id,
                 ConcertName = x.Name,
                 ArtistName = x.Artist.Name,
                 ConcertImage = x.ImageUrl,
-                Description = x.Description.Length>100?x.Description.Substring(0,100): x.Description,
+                Description = x.Description.Length > 100 ? x.Description.Substring(0, 100) : x.Description,
             }).ToList();
             return View(vm);
         }
@@ -42,31 +42,31 @@ namespace ConcertBooking.WebHost.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var concert = await _concertRepo.GetById(id);
-            if(concert== null)
+            if (concert == null)
             {
                 return NotFound();
             }
             var vm = new HomeConcertDetailsViewModel
             {
                 ConcertId = concert.Id,
-                ConcertName= concert.Name,
-                Description=concert.Description,
+                ConcertName = concert.Name,
+                Description = concert.Description,
                 ConcertDateTime = concert.DateTime,
                 ArtistName = concert.Artist.Name,
                 ArtistImage = concert.Artist.ImageUrl,
                 VenueName = concert.Venue.Name,
-                VenueAddress= concert.Venue.Address,
+                VenueAddress = concert.Venue.Address,
                 ConcertImage = concert.ImageUrl
             };
             return View(vm);
-            
+
         }
 
         [Authorize]
         public async Task<IActionResult> AvailabeTickets(int id)
         {
             var concert = await _concertRepo.GetById(id);
-            if(concert== null)
+            if (concert == null)
             {
                 return NotFound();
             }
@@ -87,7 +87,7 @@ namespace ConcertBooking.WebHost.Controllers
         [HttpPost]
         public async Task<IActionResult> BookTickets(int ConcertId, List<int> selectedSeats)
         {
-            if (selectedSeats == null || selectedSeats.Count==0)
+            if (selectedSeats == null || selectedSeats.Count == 0)
             {
                 ModelState.AddModelError("", "No Seats Selected");
                 return RedirectToAction("AvailableTickets", new { id = ConcertId });
@@ -103,8 +103,8 @@ namespace ConcertBooking.WebHost.Controllers
                 BookingDate = DateTime.Now,
                 UserId = userId,
             };
-            
-            foreach( var  seatNumber in selectedSeats)
+
+            foreach (var seatNumber in selectedSeats)
             {
                 newBooking.Tickets.Add(new Ticket
                 {
@@ -113,7 +113,7 @@ namespace ConcertBooking.WebHost.Controllers
                 });
             }
             await _bookingRepo.AddBooking(newBooking);
-            return RedirectToAction("Index");  
+            return RedirectToAction("Index");
         }
 
 

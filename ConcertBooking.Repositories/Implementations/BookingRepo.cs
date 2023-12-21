@@ -20,16 +20,16 @@ namespace ConcertBooking.Repositories.Implementations
 
         public async Task AddBooking(Booking booking)
         {
-          await _context.Bookings.AddAsync(booking);
-          await  _context.SaveChangesAsync();
+            await _context.Bookings.AddAsync(booking);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Booking>> GetAll(int concertId)
         {
-            var booking = await _context.Bookings.Include(b=>b.Tickets)
-                .Include(c=>c.Concert)
-                .Include(u=>u.User)
-                .Where(b=>b.ConcertId == concertId)
+            var booking = await _context.Bookings.Include(b => b.Tickets)
+                .Include(c => c.Concert)
+                .Include(u => u.User)
+                .Where(b => b.ConcertId == concertId)
                 .ToListAsync();
             return booking;
         }

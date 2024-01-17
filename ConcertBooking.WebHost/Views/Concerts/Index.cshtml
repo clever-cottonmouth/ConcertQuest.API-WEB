@@ -5,18 +5,32 @@
 }
 
 <h1>Concert List</h1>
+<div class="row">
+    <div class="col-8">
+        <p>
+            <a asp-action="Create" class="btn btn-info">Create New</a>
+        </p>
+    </div>
+    <div class="col-4">
+        <form class="d-flex" asp-action="Index" method="post">
+            <input class="form-control me-sm-2" type="search" placeholder="Search" name="searchText" value="@ViewData["filterData"]" />
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">Search</button>
+        </form>
+    </div>
+</div>
 
 <p>
-    <a asp-action="Create" class="btn btn-info">Create New</a>
+
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Id
+                <a asp-route-sortOrder="@ViewData["IdSort"]">Id</a>
             </th>
             <th>
-                Name
+                <a asp-route-sortOrder="@ViewData["NameSort"]">Name</a>
+
             </th>
             <th>
                 DateTime
@@ -50,9 +64,9 @@
                     @Html.DisplayFor(modelItem => item.ArtistName)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("GetTickets", "GetTickets", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("GetTickets", "GetTickets", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }
@@ -65,6 +79,6 @@
 }
 
 
-<a class="btn btn-info @previous" asp-route-pageNumber="@(Model.PageInfo.PageNumber - 1)">Previous</a>
-<a class="btn btn-info @next" asp-route-pageNumber="@(Model.PageInfo.PageNumber + 1)">Next</a>
+<a asp-route-sortOrder="@ViewData["SortFilter"]" asp-route-FilterText="@ViewData["filterData"]" class="btn btn-info @previous" asp-route-pageNumber="@(Model.PageInfo.PageNumber - 1)">Previous</a>
+<a asp-route-sortOrder="@ViewData["SortFilter"]" asp-route-FilterText="@ViewData["filterData"]" class="btn btn-info @next" asp-route-pageNumber="@(Model.PageInfo.PageNumber + 1)">Next</a>
 

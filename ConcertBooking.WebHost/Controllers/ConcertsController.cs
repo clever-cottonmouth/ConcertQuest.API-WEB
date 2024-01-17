@@ -24,12 +24,43 @@ namespace ConcertBooking.WebHost.Controllers
             _bookingRepo = bookingRepo;
         }
 
-        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 5)
+        public async Task<IActionResult> Index(string sortOrder, string FilterText, int pageNumber = 1, int pageSize = 5, string searchText = null)
         {
-            var concerts = await _concertRepo.GetAll();
+
             var vm = new List<ConcertViewModel>();
 
+            ViewData["SortFilter"] = sortOrder;
+            ViewData["IdSort"] = sortOrder == "Id_desc" ? "" : "Id_desc";
+            ViewData["NameSort"] = sortOrder == "Name_desc" ? "Name_asc" : "Name_desc";
+            var concerts = await _concertRepo.GetAll();
+
+            if (searchText != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchText = FilterText;
+            }
+            ViewData["filterData"] = searchText;
+
+            switch (sortOrder)
+            {
+                case "Id_desc": concerts = concerts.OrderByDescending(x => x.Id).ToList(); break;
+                case "Name_desc": concerts = concerts.OrderByDescending(x => x.Name).ToList(); break;
+                case "Name_asc": concerts = concerts.OrderBy(x => x.Name).ToList(); break;
+                default: concerts = concerts.OrderBy(x => x.Id).ToList(); break;
+            }
+
+
             int totalItems = 0;
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                concerts = concerts.Where(x => x.Name.Contains(searchText));
+            }
+
+
             totalItems = concerts.ToList().Count;
             concerts = concerts.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 

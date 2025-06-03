@@ -1,37 +1,37 @@
-# Concert Booking System (ASP.NET MVC)
+# ConcertQuest
 
-## Overview
+ConcertQuest is a web-based concert ticket booking system built with ASP.NET Core MVC and Entity Framework Core. It allows users to browse concerts, view details, book tickets, and manage bookings. Admins can manage venues, artists, and concerts.
 
-The Concert Booking System is an ASP.NET MVC-based application designed to streamline the process of booking and managing concert events. It offers users a platform to explore concerts, book tickets, and administer event details.
+## Project Structure
 
-## Prerequisites
+```
+ConcertQuest/
+├── ConcertBooking.WebHost/         # ASP.NET Core MVC web application (UI, controllers, views)
+├── ConcertBooking.Repositories/    # Data access layer (DbContext, repositories)
+├── ConcertBooking.Entities/        # Domain models/entities (Concert, Venue, Artist, Ticket, Booking, User)
+├── ConcertBooking.Infrastructure/  # Infrastructure/configuration code
+├── ConcertBooking.Documents/       # Query and document-related code
+├── CleverCottonmouth.sln           # Visual Studio solution file
+└── LICENSE                         # MIT License
+```
 
-- [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework)
-- [Visual Studio](https://visualstudio.microsoft.com/downloads/)
-- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
-- 
-## Technologies Used
+## Main Features
+- Browse upcoming concerts and view details
+- Book tickets for concerts (with seat selection)
+- User authentication and registration
+- Admin management for venues, artists, and concerts
+- View and manage bookings
 
-- **ASP.NET MVC**: A powerful framework for building scalable and secure web applications using the Model-View-Controller architectural pattern. It provides a structured approach to separating concerns and enables rapid development.
-  
-- **C#**: The primary programming language used in conjunction with ASP.NET MVC. C# offers strong typing, object-oriented programming features, and is integral to the .NET framework.
-  
-- **Entity Framework**: An Object-Relational Mapping (ORM) framework that simplifies database interactions by allowing developers to work with databases using .NET objects. Entity Framework abstracts the database schema and facilitates data operations without writing complex SQL queries.
-  
-- **SQL Server**: Microsoft's relational database management system used to store and manage data for the application. It offers robust transactional support, security features, and scalability.
-  
-- **HTML/CSS**: HTML (HyperText Markup Language) provides the structure and content of web pages, while CSS (Cascading Style Sheets) is used for styling and layout to enhance the visual presentation and responsiveness of the application.
-  
-- **JavaScript/jQuery**: JavaScript, along with the jQuery library, is employed for client-side scripting and interactivity. jQuery simplifies DOM manipulation and event handling, enabling a more dynamic user experience.
-  
-- **Bootstrap (optional)**: A front-end framework used for designing responsive and mobile-first websites. It provides pre-built components and styles that enhance the application's appearance and responsiveness across various devices.
+## Tech Stack
+- **Backend:** ASP.NET Core MVC, Entity Framework Core
+- **Frontend:** Razor Views (MVC)
+- **Database:** SQL Server (via EF Core)
+- **Authentication:** ASP.NET Core Identity
 
+## Getting Started
+1. Clone the repository
+2. Set up the database connection string in `appsettings.json`
+3. Build and run the solution using Visual Studio or `dotnet run`
 
-These technologies collectively contribute to the robustness, performance, and user experience of the Concert Booking System by leveraging industry-standard tools and frameworks.
-
-## Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/mirajhad/Concert-Booking-System
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. 
